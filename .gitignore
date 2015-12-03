@@ -2,6 +2,12 @@
 __pycache__/
 *.py[cod]
 
+# Ubuntu modified files extensions
+*.*~
+
+# IDEA PYCHARM extensions
+.idea
+
 # C extensions
 *.so
 
