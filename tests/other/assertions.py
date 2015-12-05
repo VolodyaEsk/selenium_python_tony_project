@@ -18,7 +18,7 @@ class Assertsions(unittest.TestCase):
         self.driver = webdriver.Firefox()
         self.driver.maximize_window()
         self.wait = WebDriverWait(self.driver, 10)
-        self.driver.implicitly_wait(15)
+        # self.driver.implicitly_wait(15)
 
     def test_assert_title(self):
         self.driver.get(self.base_url)
@@ -35,16 +35,25 @@ class Assertsions(unittest.TestCase):
         submit_button_locator = 'span.wsite-button-inner'
         error_text_locator = '//form/following-sibling::div'
 
-        self.wait.until(EC.element_to_be_clickable((By.XPATH, contact_locator))).click()
-        name_field_element = self.wait.until(EC.presence_of_element_located((By.XPATH, name_field_locator)))
-        name_field_element.send_keys("Romeo")
-        email_field_element = self.wait.until(EC.presence_of_element_located((By.XPATH, email_field_locator)))
-        email_field_element.send_keys("romeolucky@gmail.co")
-        text_area_element = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, text_area_locator)))
-        text_area_element.send_keys("some complaints!!")
-        self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, submit_button_locator))).click()
+        self.driver.find_element_by_xpath(contact_locator).click()
+        # self.wait.until(EC.element_to_be_clickable((By.XPATH, contact_locator))).click()
 
-        error_text = self.driver.find_element_by_xpath(error_text_locator).text
+        name_field_element = self.driver.find_element_by_xpath(name_field_locator)
+        # name_field_element = self.wait.until(EC.presence_of_element_located((By.XPATH, name_field_locator)))
+        name_field_element.send_keys("Romeo")
+
+        email_field_element = self.driver.find_element_by_xpath(email_field_locator)
+        # email_field_element = self.wait.until(EC.presence_of_element_located((By.XPATH, email_field_locator)))
+        email_field_element.send_keys("romeolucky@gmail.co")
+
+        text_area_element = self.driver.find_element_by_tag_name(text_area_locator)
+        # text_area_element = self.wait.until(EC.presence_of_element_located((By.TAG_NAME, text_area_locator)))
+        text_area_element.send_keys("some complaints!!")
+
+        self.driver.find_element_by_css_selector(submit_button_locator).click()
+        # self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, submit_button_locator))).click()
+
+        error_text = self.wait.until(EC.presence_of_element_located((By.XPATH, error_text_locator))).text
         self.assertEqual('Please correct the highlighted fields', error_text, "ERROR TEXT IS NOT EQUAL")
 
     def test_select_drop_down_option(self):

@@ -19,13 +19,15 @@ class WaitForElements(unittest.TestCase):
     def test_wait_for_photos_button(self):
         self.driver.get("http://travelingtony.weebly.com/")
         button_locator = 'span.wsite-button-inner'
-        see_button = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, button_locator)))
+        see_button = self.driver.find_element_by_css_selector(button_locator)
+        # see_button = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, button_locator)))
         print see_button
 
     def test_wait_for_search_field(self):
         self.driver.get("http://travelingtony.weebly.com/")
         search_locator = 'input.wsite-search-input'
-        search_field = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, search_locator)))
+        search_field = self.driver.find_element_by_css_selector(search_locator)
+        # search_field = self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, search_locator)))
         print search_field
 
     @classmethod
