@@ -3,12 +3,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.keys import Keys
 import unittest
-import time
+
 
 
 class SwitchToWindow(unittest.TestCase):
@@ -64,7 +60,8 @@ class SwitchToWindow(unittest.TestCase):
 
     def test_switch_and_share_window_twitter(self):
         url = 'http://travelingtony.weebly.com/store/p1/Leatherback_Turtle_Picture.html'
-        driver.get(url)
+        url2 = 'http://travelingtony.weebly.com/store/p2/Ogooue_River.html'
+        driver.get(url2)
 
         # Locators
         twitter_sharing_link_locator_css = 'a.wsite-com-product-social-twitter'
