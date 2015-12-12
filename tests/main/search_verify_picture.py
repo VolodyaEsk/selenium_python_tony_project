@@ -1,12 +1,12 @@
 from constants import TT_CONSTANTS
-from BaseTestCase import BaseTestCase
+from Base import Base
 from Common import Common
 from selenium.webdriver.common.keys import Keys
 import unittest
 import time
 
 
-class SearchVerifyPicture(BaseTestCase, unittest.TestCase):
+class SearchVerifyPicture(Base, unittest.TestCase):
 
     def setUp(self):
         super(SearchVerifyPicture, self).setUp()

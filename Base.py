@@ -5,11 +5,10 @@ from constants import TT_CONSTANTS
 import unittest
 
 
-class BaseTestCase(object):
+class Base(object):
 
     def setUp(self):
         if TT_CONSTANTS['Browser'].lower() == 'firefox':
-            print "I am Firefox"
             self.driver = webdriver.Firefox()
             self.driver.maximize_window()
         elif TT_CONSTANTS['Browser'].lower() == 'chrome':
@@ -25,7 +24,6 @@ class BaseTestCase(object):
         self.driver.get(url)
 
     def tearDown(self):
-        print "Say Goodbye"
         self.driver.quit()
 
 

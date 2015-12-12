@@ -1,45 +1,33 @@
 from constants import TT_CONSTANTS
-from BaseTestCase import BaseTestCase
-from Common import Common
+from Base import Base
+from pages.contact_page import ContactPage
 import unittest
 import time
 
 
-class SendRequestTest(BaseTestCase, unittest.TestCase):
+class SendRequestTest(Base, unittest.TestCase):
 
     def setUp(self):
         super(SendRequestTest, self).setUp()
         self.navigate_to_page(TT_CONSTANTS['Base_URL'] + "contact")
 
-    def test_SendRequestTest(self):
-        common_obj = Common(self.driver)
-        common_obj.wait_for_element_visibility(10,
-                                               "xpath",
-                                               "//input[contains(@name, 'first')]"
-        )
-        common_obj.fill_out_field("xpath",
-                                  "//input[contains(@name, 'first')]",
-                                  "Paul"
-        )
-        common_obj.fill_out_field("xpath",
-                                  "//input[contains(@name, 'last')]",
-                                  "Pierce"
-        )
-        common_obj.fill_out_field("xpath",
-                                  "(//input[contains(@id, 'input')])[3]",
-                                  "contactemail@test.com"
-        )
-        common_obj.fill_out_field("xpath", "//textarea", "My comment")
-        common_obj.click(10, "xpath", "//span[.='Submit']")
-        common_obj.wait_for_element_visibility(10,
-                                               "xpath",
-                                               "//div[contains(text(), 'Thank you')]"
-                                               )
+    def test_send_request_test(self):
+        contact_page = ContactPage(self.driver)
+        contact_page.submit_request()
         """
         Just using time.sleep() so that you see the last webdriver action.
         It is not recommended using this in your tests.
         """
-        time.sleep(5)
+        time.sleep(2)
+
+    def test_validation(self):
+        contact_page = ContactPage(self.driver)
+        contact_page.validation_check()
+        """
+        Just using time.sleep() so that you see the last webdriver action.
+        It is not recommended using this in your tests.
+        """
+        time.sleep(2)
 
     def tearDown(self):
         super(SendRequestTest, self).tearDown()

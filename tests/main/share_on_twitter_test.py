@@ -1,25 +1,25 @@
 from TwitterLogin import TwitterLogin
-from Common import Common
+from pages.twitter_share_page import TwitterSharePage
 import unittest
 import time
 
 
-class ShareOnFacebookTest(TwitterLogin, unittest.TestCase):
+class ShareOnTwitterTest(TwitterLogin, unittest.TestCase):
 
     def setUp(self):
-        super(ShareOnFacebookTest, self).setUp()
+        super(ShareOnTwitterTest, self).setUp()
 
     def test_SendRequestTest(self):
-        common_obj = Common(self.driver)
-        common_obj.click(10, "xpath", "//input[@id='char-count']/following-sibling::input")
+        share_on_facebook_page_obj = TwitterSharePage(self.driver)
+        share_on_facebook_page_obj.share()
         """
         Just using time.sleep() so that you see the last webdriver action.
         It is not recommended using this in your tests.
         """
-        time.sleep(5)
+        time.sleep(2)
 
     def tearDown(self):
-        super(ShareOnFacebookTest, self).tearDown()
+        super(ShareOnTwitterTest, self).tearDown()
 
 
 if __name__ == "__main__":

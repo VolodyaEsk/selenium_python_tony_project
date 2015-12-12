@@ -1,44 +1,22 @@
-from BaseTestCase import BaseTestCase
+from Base import Base
 from constants import TT_CONSTANTS
-from Common import Common
+from pages.product_page import ProductPage
+from pages.facebook_login_page import FacebookLoginPage
 
 
-class FacebookLogin(BaseTestCase):
+class FacebookLogin(Base):
 
     def setUp(self):
-        print 'I am test case'
         super(FacebookLogin, self).setUp()
-        productPageURL = TT_CONSTANTS['Base_URL']+"store/p1/Leatherback_Turtle_Picture.html"
-        self.navigate_to_page(productPageURL)
-        common_obj = Common(self.driver)
-        common_obj.wait_for_element_visibility(10,
-                                               "id",
-                                               "wsite-com-product-option-Quantity"
-                                               )
-        mainWindowHandle  = self.driver.window_handles
-        common_obj.click(10, "xpath", "//a[@title='Share on Facebook']")
-        allWindowsHandles = self.driver.window_handles
-        for handle in allWindowsHandles:
-            if handle != mainWindowHandle[0]:
-                common_obj.switch_to_window(handle)
-                break
-        common_obj.wait_for_element_visibility(10,
-                                               "id",
-                                               "email"
-                                               )
-        common_obj.fill_out_field("id",
-                                  "email",
-                                  TT_CONSTANTS['Facebook_Username']
-                                  )
-        common_obj.fill_out_field("id",
-                                  "pass",
-                                  TT_CONSTANTS['Facebook_Password']
-                                  )
-        common_obj.click(10, "name", "login")
-        common_obj.wait_for_element_visibility(10,
-                                               "name",
-                                               "share"
-                                               )
+        product_page_url = TT_CONSTANTS['Base_URL']+"store/p1/Leatherback_Turtle_Picture.html"
+        self.navigate_to_page(product_page_url)
+        product_page_obj = ProductPage(self.driver)
+        product_page_obj.click_on_facebook_share_button()
+        action = FacebookLoginPage(self.driver,
+                                   TT_CONSTANTS['Facebook_Username'],
+                                   TT_CONSTANTS['Facebook_Password']
+                                   )
+        action.login()
 
     def tearDown(self):
         super(FacebookLogin, self).tearDown()

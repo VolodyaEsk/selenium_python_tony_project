@@ -98,8 +98,6 @@ class SwitchToWindow(unittest.TestCase):
 
         # time.sleep(4)
 
-
-
     def test_focus_to_alert(self):
         url = 'http://www.tizag.com/javascriptT/javascriptconfirm.php'
         driver.get(url)
