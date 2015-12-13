@@ -5,6 +5,7 @@ from base_page import IncorrectPageException
 from facebook_login_page import FacebookLoginPage
 from twitter_login_page import TwitterLoginPage
 from constants import TT_CONSTANTS
+from UI_map import product_page_map
 
 
 class ProductPage(BasePage):
@@ -14,13 +15,13 @@ class ProductPage(BasePage):
 
     def _verify_page(self):
         try:
-            self.wait_for_element_visibility(5, "id", "wsite-com-product-option-Quantity")
+            self.wait_for_element_visibility(5, "id", product_page_map['quantity_drop_down_id'])
         except:
             raise IncorrectPageException
 
     def click_on_facebook_share_button(self):
         main_window_handle = self.driver.window_handles
-        self.click(10, "xpath", "//a[@title='Share on Facebook']")
+        self.click(10, "xpath", product_page_map['facebook_share_link_xpath'])
         all_windows_handles = self.driver.window_handles
         for handle in all_windows_handles:
             if handle != main_window_handle[0]:
@@ -33,7 +34,7 @@ class ProductPage(BasePage):
 
     def click_on_twitter_share_button(self):
         main_window_handle = self.driver.window_handles
-        self.click(10, "xpath", "//a[@class='wsite-com-product-social-twitter']")
+        self.click(10, "xpath", product_page_map['twitter_share_link_xpath'])
         all_windows_handles = self.driver.window_handles
         for handle in all_windows_handles:
             if handle != main_window_handle[0]:
