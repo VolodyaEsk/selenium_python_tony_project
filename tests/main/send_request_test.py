@@ -3,6 +3,8 @@ from Base import Base
 from pages.contact_page import ContactPage
 import unittest
 import time
+import nose
+from nose.plugins.attrib import attr
 
 
 class SendRequestTest(Base, unittest.TestCase):
@@ -11,6 +13,8 @@ class SendRequestTest(Base, unittest.TestCase):
         super(SendRequestTest, self).setUp()
         self.navigate_to_page(TT_CONSTANTS['Base_URL'] + "contact")
 
+    @attr(priority="high")
+    @attr(group="other")
     def test_send_request_test(self):
         contact_page = ContactPage(self.driver)
         contact_page.submit_request()
@@ -20,6 +24,8 @@ class SendRequestTest(Base, unittest.TestCase):
         """
         time.sleep(2)
 
+    @attr(priority="high")
+    @attr(group="other")
     def test_validation(self):
         contact_page = ContactPage(self.driver)
         contact_page.validation_check()
@@ -34,6 +40,6 @@ class SendRequestTest(Base, unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    nose.main()
 
 

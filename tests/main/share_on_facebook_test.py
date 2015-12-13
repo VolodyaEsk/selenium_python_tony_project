@@ -2,6 +2,8 @@ from FacebookLogin import FacebookLogin
 from pages.facebook_share_page import FacebookSharePage
 import unittest
 import time
+import nose
+from nose.plugins.attrib import attr
 
 
 class ShareOnFacebookTest(FacebookLogin, unittest.TestCase):
@@ -9,6 +11,8 @@ class ShareOnFacebookTest(FacebookLogin, unittest.TestCase):
     def setUp(self):
         super(ShareOnFacebookTest, self).setUp()
 
+    @attr(priority="low")
+    @attr(group="socialNetworking")
     def test_share_on_facebook_test(self):
         share_on_facebook_page_obj = FacebookSharePage(self.driver)
         share_on_facebook_page_obj.share()
@@ -23,6 +27,6 @@ class ShareOnFacebookTest(FacebookLogin, unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    nose.main()
 
 

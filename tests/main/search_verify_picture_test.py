@@ -4,6 +4,7 @@ from Common import Common
 from selenium.webdriver.common.keys import Keys
 import unittest
 import time
+from nose.plugins.attrib import attr
 
 
 class SearchVerifyPicture(Base, unittest.TestCase):
@@ -12,6 +13,7 @@ class SearchVerifyPicture(Base, unittest.TestCase):
         super(SearchVerifyPicture, self).setUp()
         self.navigate_to_page(TT_CONSTANTS['Base_URL'])
 
+    @attr(group="other")
     def test_search_verify_picture(self):
         common_obj = Common(self.driver)
         elem = common_obj.wait_for_element_visibility(5, "name", 'q')

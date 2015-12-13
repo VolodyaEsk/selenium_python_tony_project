@@ -5,6 +5,9 @@ __pycache__/
 # Ubuntu modified files extensions
 *.*~
 
+# Nose extensions
+.noseids
+
 # IDEA PYCHARM extensions
 .idea
 

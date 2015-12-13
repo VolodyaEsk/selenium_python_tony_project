@@ -2,6 +2,8 @@ from TwitterLogin import TwitterLogin
 from pages.twitter_share_page import TwitterSharePage
 import unittest
 import time
+import nose
+from nose.plugins.attrib import attr
 
 
 class ShareOnTwitterTest(TwitterLogin, unittest.TestCase):
@@ -9,7 +11,9 @@ class ShareOnTwitterTest(TwitterLogin, unittest.TestCase):
     def setUp(self):
         super(ShareOnTwitterTest, self).setUp()
 
-    def test_SendRequestTest(self):
+    @attr(priority="high")
+    @attr(group="socialNetworking")
+    def test_tweet_on_twitter_test(self):
         share_on_facebook_page_obj = TwitterSharePage(self.driver)
         share_on_facebook_page_obj.share()
         """
@@ -23,6 +27,6 @@ class ShareOnTwitterTest(TwitterLogin, unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    nose.main()
 
 
